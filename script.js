@@ -61,7 +61,7 @@ async function getSongs(folder) {
       });
     });
   }
-  return songs;
+  // return songs;
 }
 const playMusic = (track, pause = false) => {
   currentSong.src = `/${currFolder}/` + track;
