@@ -13,7 +13,7 @@ function convertSecondsToMinutes(totalSeconds) {
 
 async function getSongs(folder) {
   currFolder = folder;
-  let a = await fetch(`https://api.github.com/MohdShadab9887/apna-spotify0/main/song/${folder}`);
+  let a = await fetch(`https://api.github.com/MohdShadab9887/apna-spotify0/main/${folder}`);
   let response = await a.text();
   let div = document.createElement("div");
   div.innerHTML = response;
