@@ -22,7 +22,7 @@ async function getSongs(folder) {
   for (let index = 0; index < as.length; index++) {
     const element = as[index];
     if (element.href.endsWith(".mp4")) {
-      songs.push(element.href.split(`https://apna-spotify0.vercel.app/song/${folder}/`)[1]);
+      songs.push(element.href.split(`https://apna-spotify0.vercel.app/main/song/${folder}/`)[1]);
       // play.songs()
     }
   }
