@@ -60,16 +60,16 @@ async function getSongs(folder) {
         );
       });
     });
+    return songs;
   }
-  return songs;
 }
+
 const playMusic = (track, pause = false) => {
   currentSong.src = `/${currFolder}/` + track;
   if (!pause) {
     currentSong.play();
     play.src = "icons/pauseSong.svg";
   }
-
   document.querySelector(".songName").innerHTML =
     decodeURI(
       track
@@ -91,18 +91,45 @@ async function displayAlbums() {
     const e = array[index];
     if (e.href.includes("/song") && !e.href.includes(".htaccess")) {
       let folder = e.href.split("/").slice(-2)[0];
-      let a = await fetch(`/song/${folder}`);
-      let response = await fetch `a.json`
-      // songs.push(element.href.split(`/${folder}/`)[1]);
-      // play.songs()
+
+      // Get the metadata of the folder
+      //     let a = await fetch(`/song/${folder}/info.json`);
+      //     let response = await fetch`a.json()`;
+      //     cardContainer.innerHTML =
+      //       cardContainer.innerHTML +
+      //       ` <div data-folder="${folder}" class="card">
+      //     <div class="play">
+      //         <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+      //             xmlns="http://www.w3.org/2000/svg">
+      //             <path d="M5 20V4L19 12L5 20Z" stroke="#141B34" fill="#000" stroke-width="1.5"
+      //                 stroke-linejoin="round" />
+      //         </svg>
+      //     </div>
+
+      //     <img src="/songs/${folder}/cover.jpg" alt="">
+      //     <h2>${response.title}</h2>
+      //     <p>${response.description}</p>
+      // </div>`;
     }
   }
+
+  // Load the playlist whenever card is clicked
+  Array.from(document.getElementsByClassName("card")).forEach(e => {
+    e.addEventListener("click", async item => {
+      console.log("Fetching Song");
+      songs = await getSongs(`song/${item.currentTarget.dataset.folder}`);
+      playMusic(songs[0]);
+    })
+  })
 }
 
 async function main() {
   // Get the list of all the songs
   await getSongs("song/SheikhYassirDosari");
   playMusic(songs[0], true);
+
+  // Display all the albums on the page
+  await displayAlbums()
 
   // function playPause
   let playButton = document.getElementById("play");
