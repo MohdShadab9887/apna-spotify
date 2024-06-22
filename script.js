@@ -13,7 +13,7 @@ function convertSecondsToMinutes(totalSeconds) {
 
 async function getSongs(folder) {
   currFolder = folder;
-  let a = await fetch(`/${currFolder}/`);
+  let a = await fetch(`https://api.github.com/MohdShadab9887/apna-spotify0/main/song/${folder}`);
   let response = await a.text();
   let div = document.createElement("div");
   div.innerHTML = response;
@@ -77,27 +77,27 @@ const playMusic = (track, pause = false) => {
   document.querySelector(".timer").innerHTML = "00:00 / 00:00";
 };
 
-async function displayAlbums() {
-  console.log("displying albums");
-  // currFolder = folder ${currFolder};
-  let a = await fetch(`/song/`);
-  let response = await a.text();
-  let div = document.createElement("div");
-  div.innerHTML = response;
-  let anchors = div.getElementsByTagName("a");
-  // songs = [];
-  let array = Array.from(anchors);
-  for (let index = 0; index < array.length; index++) {
-    const e = array[index];
-    if (e.href.includes("/song") && !e.href.includes(".htaccess")) {
-      let folder = e.href.split("/").slice(-2)[0];
-      let a = await fetch(`/song/${folder}`);
-      let response = await fetch `a.json`
-      // songs.push(element.href.split(`/${folder}/`)[1]);
-      // play.songs()
-    }
-  }
-}
+// async function displayAlbums() {
+//   console.log("displying albums");
+//   // currFolder = folder ${currFolder};
+//   let a = await fetch(`/song/`);
+//   let response = await a.text();
+//   let div = document.createElement("div");
+//   div.innerHTML = response;
+//   let anchors = div.getElementsByTagName("a");
+//   // songs = [];
+//   let array = Array.from(anchors);
+//   for (let index = 0; index < array.length; index++) {
+//     const e = array[index];
+//     if (e.href.includes("/song") && !e.href.includes(".htaccess")) {
+//       let folder = e.href.split("/").slice(-2)[0];
+//       let a = await fetch(`/song/${folder}`);
+//       let response = await fetch `a.json`
+//       // songs.push(element.href.split(`/${folder}/`)[1]);
+//       // play.songs()
+//     }
+//   }
+// }
 
 async function main() {
   // Get the list of all the songs
