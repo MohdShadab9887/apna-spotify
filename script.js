@@ -23,7 +23,7 @@ async function getSongs(folder) {
     const element = as[index];
     if (element.href.endsWith(".mp4")) {
       songs.push(element.href.split(`/${folder}/`)[1]);
-      play.song()
+      // play.songs()
     }
   }
 
@@ -61,6 +61,7 @@ async function getSongs(folder) {
       });
     });
   }
+  // return songs;
 }
 const playMusic = (track, pause = false) => {
   currentSong.src = `/${currFolder}/` + track;
