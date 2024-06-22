@@ -75,29 +75,29 @@ const playMusic = (track, pause = false) => {
       track
     ); /*  or currentSong.src.replaceAll("%20", " ").trim().split("/song/")[1]  */
   document.querySelector(".timer").innerHTML = "00:00 / 00:00";
-}
+};
 
-// async function displayAlbums() {
-//   console.log("displying albums");
-//   // currFolder = folder ${currFolder};
-//   let a = await fetch(`/song/`);
-//   let response = await a.text();
-//   let div = document.createElement("div");
-//   div.innerHTML = response;
-//   let anchors = div.getElementsByTagName("a");
-//   // songs = [];
-//   let array = Array.from(anchors);
-//   for (let index = 0; index < array.length; index++) {
-//     const e = array[index];
-//     if (e.href.includes("/song") && !e.href.includes(".htaccess")) {
-//       let folder = e.href.split("/").slice(-2)[0]
-//       let a = await fetch(`/song/${folder}`);
-//       // let response = await fetch `a.json`
-//       // songs.push(element.href.split(`/${folder}/`)[1]);
-//       // play.songs()
-//     }
-//   }
-// }
+async function displayAlbums() {
+  console.log("displying albums");
+  // currFolder = folder ${currFolder};
+  let a = await fetch(`/song/`);
+  let response = await a.text();
+  let div = document.createElement("div");
+  div.innerHTML = response;
+  let anchors = div.getElementsByTagName("a");
+  // songs = [];
+  let array = Array.from(anchors);
+  for (let index = 0; index < array.length; index++) {
+    const e = array[index];
+    if (e.href.includes("/song") && !e.href.includes(".htaccess")) {
+      let folder = e.href.split("/").slice(-2)[0];
+      let a = await fetch(`/song/${folder}`);
+      // let response = await fetch `a.json`
+      // songs.push(element.href.split(`/${folder}/`)[1]);
+      // play.songs()
+    }
+  }
+}
 
 async function main() {
   // Get the list of all the songs
@@ -177,4 +177,4 @@ document.addEventListener("DOMContentLoaded", function () {
   }
   setTimeout(hideStartupMessage, 1000);
 });
-main()
+main();
