@@ -123,10 +123,11 @@ p:hover {
 .iconPNG1 {
   position: absolute;
   top: 15px;
-  right: -5px;
+  right: 0;
   filter: invert(1);
   height: 30px;
   width: 30px;
+  
 }
 .libDiv {
   display: flex;
