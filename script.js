@@ -15,7 +15,7 @@ function convertSecondsToMinutes(totalSeconds) {
 async function getSongs(folder) {
   try {
     currFolder = folder;
-    const response = await fetch(`https://apna-spotify0.vercel.app/song/${currFolder}/`);
+    const response = await fetch(`https://apna-spotify0.vercel.app/${currFolder}/`);
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
