@@ -551,7 +551,16 @@ a:hover {
   .cardContainer {
     display: flex;
     justify-content: center;
-    height: 65%;
+    height: 60%;
+  }
+  .hoverImg {
+    height: 50px;
+    max-width: 50px;
+    position: absolute;
+    bottom: 10px;
+    top: 280px;
+    right: 20px;
+    opacity: 0;
   }
   .card {
     margin-bottom: -6px;

@@ -59,8 +59,8 @@ async function getSongs(folder) {
           e.querySelector(".songInfo").firstElementChild.innerHTML.trim()
         );
       });
+      return songs;
     });
-    return songs;
   }
 }
 
@@ -114,8 +114,8 @@ async function displayAlbums() {
   }
 
   // Load the playlist whenever card is clicked
-  Array.from(document.getElementsByClassName("card")).forEach(e => {
-    e.addEventListener("click", async item => {
+  Array.from(document.getElementsByClassName("card")).forEach((e) => {
+    e.addEventListener("click", async (item) => {
       console.log("Fetching Song");
       songs = await getSongs(`song/${item.currentTarget.dataset.folder}`);
       playMusic(songs[0]);
@@ -126,7 +126,7 @@ async function displayAlbums() {
 async function main() {
   // Get the list of all the songs
   await getSongs("song/SheikhYassirDosari");
-  playMusic(songs[0], true);
+  playMusic(songs[0],true);
 
   // Display all the albums on the page
   await displayAlbums()
