@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Spotify - Web Player: Music for everyone</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+      <div class="startUpDiv">
+        <img class="startUpImg" src="DP/StatUp Logo.png" alt="">
+      </div>
+      <div class="leftContainer">
+        <div class="homeSearch">
+          <div class="spotify">
+            <img class="spotifyIcon" src="DP/StatUp Logo.png" alt="logo" />
+            <img class="closeBTN" src="icons/close.svg" alt="">
+          </div>
+
+          <!-- <div class="closeDiv"> </div> -->
+          <div class="homeDiv">
+            <img class="iconPNG" src="icons/home.svg" alt="home" />
+            <p>Home</p>
+          </div>
+          <div class="searchDiv">
+            <img class="iconPNG" src="icons/search.svg" alt="search" />
+            <p>Search</p> 
+          </div>
+        </div>
+          <div class="library">
+            <div class="libDiv">
+              <img class="iconPNG" src="icons/library.svg" alt="" />
+              <p>Your Library</p>
+              <img
+                class="iconPNG1"
+                id="libraryPlus"
+                src="icons/libraryPlus.svg"
+                alt=""/>
+            </div>
+            
+            <div class="songList">
+              <ul>
+                                
+              </ul>
+            </div> 
+
+            <div class="footer">
+              <a href="https://www.spotify.com/in-en/legal/">Legal</a>
+              <a href="https://www.spotify.com/in-en/safetyandprivacy/">Safety & Privacy Center</a>
+              <a href="https://www.spotify.com/in-en/legal/privacy-policy/">Privacy Policy</a>
+              <a href="https://www.spotify.com/in-en/legal/cookies-policy/">Cookies</a>
+              <a href="https://www.spotify.com/in-en/legal/privacy-policy/#s3">About Ads</a>
+              <a href="https://www.spotify.com/in-en/accessibility/">Accessibility</a>
+              <a href="https://www.spotify.com/legal/cookies-policy/">Cookies</a>
+              </div>
+              <div>
+                <button id="langBTN" class="langDiv">
+                  <div class="imgDiv">
+                    <img class="iconPNG2" src="icons/lang.svg" alt="">
+                  </div>
+                  <div class="pdiv">English
+                  </div>
+                </button>
+              <div class="socialDiv">
+                <a href="https://www.instagram.com/shadab____since2000/">
+                  <img src="icons/instagram.svg" alt="">
+                </a>
+                <a href="mailto:mohammedkhan9887@gmail.com">
+                  <img src="icons/gmail.svg" alt="">
+                </a>
+                <a href="https://www.linkedin.com/in/mohd-shadab-ba74b027a/">
+                  <img src="icons/linked_In.svg" alt="">
+                </a>
+              </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      <div class="rightContainer">
+
+        <div class="headDiv">
+
+          <div class="hamberger_div">
+            <img class="hamberger_png" src="icons/hamberger.svg" alt="">
+          </div>
+
+          <div class="arrowDiv">
+            <img class="iconPNG3" src="icons/left_arrow.svg" alt="">
+            <img class="iconPNG4" src="icons/right_arrow.svg" alt="">
+          </div>
+
+          <div class="btnDiv">
+            <button class="SignUpBtn" >Sign up</button>
+            <button class="LogInBtn" >Log in</button>
+          </div>
+        </div>
+
+        <div class="cardHead">
+          <h3>Spotify Playlists</h3>
+          <p>Show all</p>
+        </div>
+        <div class="cardContainer">
+
+          <!-- card 0  -->
+        <div data-folder ="SheikhYassirDosari" class="card">          
+          <img class="hoverImg" src="icons/playBTN.svg" alt="">            
+          <img class="thumbImg" src="DP/img.jpg" alt="">
+          <h4>QURAN RECITATION</h4>
+          <p>Beautiful Recitation of QURAN</p>
+        </div>
+
+         <!-- card 1 -->
+         <div data-folder="atifaslam" class="card">      
+          <img class="hoverImg" src="icons/playBTN.svg" alt="">           
+          <img src="DP/AtifAslam.jpg" alt="">
+          <h4>Atif Aslam</h4>
+          <p>Just lean back and enjoy relaxed beats.</p>
+        </div>       
+
+        <!-- card 2  -->
+        <div data-folder="dinojames" class="card">          
+          <img class="hoverImg" src="icons/playBTN.svg" alt="">           
+          <img src="DP/DinoJames.jpg" alt="">
+          <h4>Dino James</h4>
+          <p>Just lean back and enjoy relaxed beats.</p>
+        </div>
+
+        <!-- card 3  -->
+        <div data-folder="munawar" class="card">          
+          <img class="hoverImg" src="icons/playBTN.svg" alt="">           
+          <img src="DP/Munawar.jpg" alt="">
+          <h4>Munawar</h4>
+          <p>Just lean back and enjoy relaxed beats.</p>
+        </div>
+
+        <!-- card 4  -->
+        <div data-folder="youngstunners" class="card">          
+          <img class="hoverImg" src="icons/playBTN.svg" alt="">           
+          <img src="DP/YS.jpg" alt="">
+          <h4>Young Stunners</h4>
+          <p>Just lean back and enjoy relaxed beats.</p>
+        </div>
+
+        
+       </div>
+        <div class="playerDiv">
+         <div class="songName">
+          Song_name_here.mp3
+         </div>
+         <div id="plyt" class="player_btn_div">
+            <img id="prev" class="playerBTN" src="icons/prev.svg" alt="">
+            <img id="play" class="playerBTN" src="icons/playSong.svg" alt="">
+            <img id="next" class="playerBTN" src="icons/next.svg" alt="">
+          </div>      
+          <div class="timer">
+            00:00 / 00:00
+          </div>
+          <div class="volume_div">
+            <img class="volume_png" src="icons/Volume.svg" alt="">
+            <div class="volume">
+              <div class="range">
+                <input type="range" name="volume" id="">
+              </div>
+            </div>
+          </div>
+            <div class="trackBar">
+              <div id="pointt" class="pointer"></div>
+          </div>
+        </div>  
+  </body>
+  <script src="script.js"></script>
+</html>
