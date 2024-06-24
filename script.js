@@ -13,7 +13,10 @@ function convertSecondsToMinutes(totalSeconds) {
 
 async function getSongs(folder) {
   currFolder = folder;
-  let a = await fetch(`/${folder}/`);
+
+  console.log(`currentFolder: ${currFolder}`);
+
+  let a = await fetch(`https://github.com/MohdShadab9887/apna-spotify0/tree/main/${folder}/`);
   let response = await a.text();
   let div = document.createElement("div");
   div.innerHTML = response;
@@ -65,7 +68,7 @@ async function getSongs(folder) {
 }
 
 const playMusic = (track, pause = false) => {
-  currentSong.src = `/${currFolder}/` + track;
+  currentSong.src = `${currFolder}/` + track;
   if (!pause) {
     currentSong.play();
     play.src = "icons/pauseSong.svg";
@@ -75,6 +78,7 @@ const playMusic = (track, pause = false) => {
       track
     ); /*  or currentSong.src.replaceAll("%20", " ").trim().split("/song/")[1]  */
   document.querySelector(".timer").innerHTML = "00:00 / 00:00";
+  // return playMusic
 };
 
 async function displayAlbums() {
@@ -85,6 +89,7 @@ async function displayAlbums() {
   let div = document.createElement("div");
   div.innerHTML = response;
   let anchors = div.getElementsByTagName("a");
+  let cardContainer = document.querySelector(".cardContainer");
   // songs = [];
   let array = Array.from(anchors);
   for (let index = 0; index < array.length; index++) {
@@ -94,7 +99,7 @@ async function displayAlbums() {
 
       // Get the metadata of the folder
       //     let a = await fetch(`/song/${folder}/info.json`);
-      //     let response = await fetch`a.json()`;
+      //     let response = await a.json();
       //     cardContainer.innerHTML =
       //       cardContainer.innerHTML +
       //       ` <div data-folder="${folder}" class="card">
@@ -106,30 +111,33 @@ async function displayAlbums() {
       //         </svg>
       //     </div>
 
-      //     <img src="/songs/${folder}/cover.jpg" alt="">
+      //     <img src="/song/${folder}/cover.jpg" alt="">
       //     <h2>${response.title}</h2>
       //     <p>${response.description}</p>
       // </div>`;
     }
   }
-
+  // songs = []
   // Load the playlist whenever card is clicked
   Array.from(document.getElementsByClassName("card")).forEach((e) => {
     e.addEventListener("click", async (item) => {
       console.log("Fetching Song");
       songs = await getSongs(`song/${item.currentTarget.dataset.folder}`);
       playMusic(songs[0]);
-    })
-  })
+    });
+  });
 }
-
 async function main() {
   // Get the list of all the songs
-  await getSongs("song/SheikhYassirDosari");
-  playMusic(songs[0],true);
+  // await getSongs("song/SheikhYassirDosari");
+  await getSongs(`song/DinoJames`)
+  // //  `https://github.com/MohdShadab9887/apna-spotify0/tree/main/song/SheikhYassirDosari`
+  // );
+
+  playMusic(songs[0], true);
 
   // Display all the albums on the page
-  await displayAlbums()
+  await displayAlbums();
 
   // function playPause
   let playButton = document.getElementById("play");
@@ -164,7 +172,7 @@ let closeMenu = document.querySelector(".closeBTN");
 openMenu.addEventListener("click", () => {
   document.querySelector(".leftContainer").style.zIndex = 10;
   document.querySelector(".leftContainer").style.left = "5px";
-  myHam.style.display = "none";
+  // myHam.style.display = "none";
 });
 
 closeMenu.addEventListener("click", () => {
@@ -197,11 +205,11 @@ Array.from(document.getElementsByClassName("card")).forEach((e) => {
   });
 });
 
-let startupMessage = document.querySelector(".startUpDiv");
-document.addEventListener("DOMContentLoaded", function () {
-  function hideStartupMessage() {
-    startupMessage.style.display = "none";
-  }
-  setTimeout(hideStartupMessage, 1000);
-});
+// let startupMessage = document.querySelector(".startUpDiv");
+// document.addEventListener("DOMContentLoaded", function () {
+//   function hideStartupMessage() {
+//     startupMessage.style.display = "none";
+//   }
+//   setTimeout(hideStartupMessage, 1000);
+// });
 main();
