@@ -205,11 +205,11 @@ Array.from(document.getElementsByClassName("card")).forEach((e) => {
   });
 });
 
-// let startupMessage = document.querySelector(".startUpDiv");
-// document.addEventListener("DOMContentLoaded", function () {
-//   function hideStartupMessage() {
-//     startupMessage.style.display = "none";
-//   }
-//   setTimeout(hideStartupMessage, 1000);
-// });
+let startupMessage = document.querySelector(".startUpDiv");
+document.addEventListener("DOMContentLoaded", function () {
+  function hideStartupMessage() {
+    startupMessage.style.display = "none";
+  }
+  setTimeout(hideStartupMessage, 1000);
+});
 main();
