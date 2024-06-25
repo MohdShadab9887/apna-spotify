@@ -594,8 +594,8 @@ a:hover {
   .leftContainer {
     left: -500px;
     z-index: 100;
-    height: 100vh;
-    width: 100vw;
+    height: 99vh;
+    width: 97vw;
   }
   .homeSearch {
     margin-top: 10px;
