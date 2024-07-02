@@ -12,11 +12,15 @@ function convertSecondsToMinutes(totalSeconds) {
 }
 
 async function getSongs(folder) {
+            const username = 'MohdShadab9887'; // Replace with your GitHub username
+            const repository = 'apna-spotify'; // Replace with your repository name
+            const directory = 'song'; // Replace with your directory name
   currFolder = folder;
 
   console.log(`currentFolder: ${currFolder}`);
-
-  let a = await fetch(`https://github.com/MohdShadab9887/apna-spotify0/tree/main/${folder}/`);
+``
+  // let a = await fetch(`https://github.com/MohdShadab9887/apna-spotify0/tree/main/${folder}/`);
+  let a = await fetch(`https://api.github.com/repos/${username}/${repository}/contents/${directory}/${folder}/`);
   let response = await a.text();
   let div = document.createElement("div");
   div.innerHTML = response;
