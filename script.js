@@ -12,16 +12,15 @@ function convertSecondsToMinutes(totalSeconds) {
 }
 
 async function getSongs(folder) {
-            const username = 'MohdShadab9887'; // Replace with your GitHub username
-            const repository = 'apna-spotify'; // Replace with your repository name
-            const directory = 'song'; // Replace with your directory name
   currFolder = folder;
 
-  console.log(`currentFolder: ${currFolder}`);
-``
-  // let a = await fetch(`https://github.com/MohdShadab9887/apna-spotify0/tree/main/${folder}/`);
-  let a = await fetch(`https://api.github.com/repos/${username}/${repository}/contents/${directory}/${folder}/`);
+  const username = "MohdShadab9887"; // Replace with your GitHub username
+  const repository = "apna-spotify"; // Replace with your repository name
+  const directory = "song"; // Replace with your directory name
+
+  let a = await fetch(`${folder}/`);
   let response = await a.text();
+  // console.log(response)
   let div = document.createElement("div");
   div.innerHTML = response;
   let as = div.getElementsByTagName("a");
@@ -34,7 +33,7 @@ async function getSongs(folder) {
     }
   }
 
-  // show all the songs in the plalist
+  // show all the songs in the playlist
   let songUL = document
     .querySelector(".songList")
     .getElementsByTagName("ul")[0];
@@ -56,19 +55,18 @@ async function getSongs(folder) {
               <img src="icons/playSong.svg" alt="">
             </div>
         </li>`;
-
-    Array.from(
-      document.querySelector(".songList").getElementsByTagName("li")
-    ).forEach((e) => {
-      e.addEventListener("click", (element) => {
-        // console.log(e.querySelector(".songInfo").firstElementChild.innerHTML);
-        playMusic(
-          e.querySelector(".songInfo").firstElementChild.innerHTML.trim()
-        );
-      });
-      return songs;
-    });
   }
+  Array.from(
+    document.querySelector(".songList").getElementsByTagName("li")
+  ).forEach((e) => {
+    e.addEventListener("click", (element) => {
+      // console.log(e.querySelector(".songInfo").firstElementChild.innerHTML);
+      playMusic(
+        e.querySelector(".songInfo").firstElementChild.innerHTML.trim()
+      );
+    });
+  });
+  return songs;
 }
 
 const playMusic = (track, pause = false) => {
@@ -82,13 +80,14 @@ const playMusic = (track, pause = false) => {
       track
     ); /*  or currentSong.src.replaceAll("%20", " ").trim().split("/song/")[1]  */
   document.querySelector(".timer").innerHTML = "00:00 / 00:00";
-  // return playMusic
 };
 
 async function displayAlbums() {
   console.log("displying albums");
   // currFolder = folder ${currFolder};
   let a = await fetch(`/song/`);
+  // let a = await fetch(`https://api.github.com/repos/${username}/${repository}/contents/${directory}/${folder}`);
+
   let response = await a.text();
   let div = document.createElement("div");
   div.innerHTML = response;
@@ -98,50 +97,55 @@ async function displayAlbums() {
   let array = Array.from(anchors);
   for (let index = 0; index < array.length; index++) {
     const e = array[index];
-    if (e.href.includes("/song") && !e.href.includes(".htaccess")) {
-      let folder = e.href.split("/").slice(-2)[0];
-
+    if (
+      e.href.includes("/song/")
+      //  && !e.href.includes(".htaccess")
+    ) {
+      let folder = e.href.split("/").slice(-1)[0];
       // Get the metadata of the folder
-      //     let a = await fetch(`/song/${folder}/info.json`);
-      //     let response = await a.json();
-      //     cardContainer.innerHTML =
-      //       cardContainer.innerHTML +
-      //       ` <div data-folder="${folder}" class="card">
-      //     <div class="play">
-      //         <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
-      //             xmlns="http://www.w3.org/2000/svg">
-      //             <path d="M5 20V4L19 12L5 20Z" stroke="#141B34" fill="#000" stroke-width="1.5"
-      //                 stroke-linejoin="round" />
-      //         </svg>
-      //     </div>
+      let a = await fetch(`http://127.0.0.1:5501/song/${folder}/info.json`);
+      // let a = await fetch(`https://api.github.com/repos/${username}/${repository}/contents/${directory}/${folder}/info.json`);
+      // let a = await fetch(`https://api.github.com/repos/${username}/${repository}/contents/${folder}`);
 
-      //     <img src="/song/${folder}/cover.jpg" alt="">
-      //     <h2>${response.title}</h2>
-      //     <p>${response.description}</p>
-      // </div>`;
+      // let response =   a.json;
+      let response = await a.json();
+      // console.log(a);
+      cardContainer.innerHTML =
+        cardContainer.innerHTML +
+        ` <div data-folder="${folder}" class="card">        
+          <img class="hoverImg" src="icons/playBTN.svg" alt="">            
+          <img class="thumbImg" src="/song/${folder}/cover.jpg" alt="">
+          <h4>${response.title}</h4>
+          <p>${response.description}</p>
+          </div>
+        `;
     }
   }
-  // songs = []
-  // Load the playlist whenever card is clicked
-  Array.from(document.getElementsByClassName("card")).forEach((e) => {
-    e.addEventListener("click", async (item) => {
-      console.log("Fetching Song");
-      songs = await getSongs(`song/${item.currentTarget.dataset.folder}`);
-      playMusic(songs[0]);
-    });
-  });
 }
+// songs = []
+// Load the playlist whenever card is clicked
+Array.from(document.getElementsByClassName("card")).forEach((e) => {
+  e.addEventListener("click", async (item) => {
+    console.log("Fetching Song");
+    songs = await getSongs(`song/${item.currentTarget.dataset.folder}`);
+    playMusic(songs[0]);
+    console.log(e.innerHTML);
+  });
+  // playMusic(songs[0])
+});
+
+// }
 async function main() {
   // Get the list of all the songs
-  // await getSongs("song/SheikhYassirDosari");
-  await getSongs(`song/DinoJames`)
-  // //  `https://github.com/MohdShadab9887/apna-spotify0/tree/main/song/SheikhYassirDosari`
-  // );
+  await getSongs(`song/SheikhYassirDosari`);
+  // await getSongs(`https://api.github.com/repos/${username}/${repository}/contents/${directory}/SheikhYassirDosari`);
 
   playMusic(songs[0], true);
 
   // Display all the albums on the page
-  await displayAlbums();
+  // await displayAlbums();
+
+  // await displayAlbums();
 
   // function playPause
   let playButton = document.getElementById("play");
@@ -186,7 +190,7 @@ closeMenu.addEventListener("click", () => {
 prev.addEventListener("click", () => {
   console.log("prev clicked");
   let index = songs.indexOf(currentSong.src.split("/").slice(-1)[0]);
-  if (index - 1 > 0) {
+  if (index - 1 >= 0) {
     playMusic(songs[index - 1]);
   }
 });
@@ -197,12 +201,26 @@ next.addEventListener("click", () => {
     playMusic(songs[index + 1]);
   }
 });
-document
+let vol = document
   .querySelector(".range")
   .getElementsByTagName("input")[0]
   .addEventListener("change", (e) => {
     currentSong.volume = e.target.value / 100;
   });
+
+// To mute audio volume
+
+let volume_png = document.querySelector(".volume_png");
+document.querySelector(".volume_png").addEventListener("click", () => {
+  if (currentSong.volume > 0) {
+    currentSong.volume = 0;
+    volume_png.src = "/icons/Volume_mute.svg";
+  } else {
+    currentSong.volume = .5;
+    volume_png.src = "/icons/Volume.svg";
+  }
+});
+
 Array.from(document.getElementsByClassName("card")).forEach((e) => {
   e.addEventListener("click", async (item) => {
     songs = await getSongs(`song/${item.currentTarget.dataset.folder}`);
@@ -216,4 +234,31 @@ document.addEventListener("DOMContentLoaded", function () {
   }
   setTimeout(hideStartupMessage, 1000);
 });
+
+// let i = 0
+let closeBtn = document.querySelector(".closeBTN");
+let socialBtn = document.querySelector(".socialDiv");
+let socialIcon1 = document.querySelector(".socialIcon1");
+let socialIcon2 = document.querySelector(".socialIcon2");
+let socialIcon3 = document.querySelector(".socialIcon3");
+// console.log(socialBtn);
+
+let scaled = false;
+setInterval(() => {
+  if (scaled) {
+    closeBtn.style.transform = "scale(1)";
+    // socialBtn.style.transform = "scale(0.8)";
+    // socialIcon1.style.boxShadow = "0px 0px 0px 0px white";
+    // socialIcon2.style.boxShadow = "0px 0px 0px 0px white";
+    // socialIcon3.style.boxShadow = "0px 0px 0px 0px white";
+  } else {
+    closeBtn.style.transform = "scale(1.3)";
+    // socialBtn.style.transform = "scale(1.05)";
+    // socialIcon1.style.boxShadow = "0px 0px 4px 1px black";
+    // socialIcon2.style.boxShadow = "0px 0px 4px 1px black";
+    // socialIcon3.style.boxShadow = "0px 0px 4px 1px black";
+  }
+  scaled = !scaled;
+}, 750);
+
 main();
