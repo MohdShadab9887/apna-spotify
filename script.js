@@ -17,7 +17,7 @@ async function getSongs(folder) {
   const repository = "apna-spotify"; // Replace with your repository name
   const directory = "song"; // Replace with your directory name
 
-  let a = await fetch(`${folder}/`);
+  let a = await fetch(`https://github.com/MohdShadab9887/apna-spotify/tree/9718289b479ef9a334f4124a035476a978ec224b/song`);
   let response = await a.text();
   // console.log(response)
   let div = document.createElement("div");
