@@ -6,7 +6,7 @@ body {
   color: white;
   display: flex;
   gap: 5px;
-  padding-bottom: 0px;
+  /* padding-bottom: -1px; */
 }
 body::-webkit-scrollbar {
   display: none;
@@ -56,10 +56,9 @@ button {
 .rightContainer {
   margin-top: 5px;
   background-color: #121212;
-  height: 98vh;
+  height: 98.8vh;
   width: 100%;
   border-radius: 8px;
-  padding: 0px 0px 14.5px 0px;
   flex-direction: column;
 }
 .homeSearch {
@@ -189,7 +188,7 @@ p:hover {
 .footer {
   gap: 10px;
   padding: 10px;
-  padding-bottom: 5px;
+  padding-bottom: 20px;
   position: absolute;
   bottom: 40px;
   text-align: start;
@@ -366,7 +365,7 @@ a:hover {
   background-color: #00000004;
   border: 1px solid #cacac8;
   border-radius: 50px;
-  text-align: center;
+  /* text-align: center; */
   color: #7c7c7a;
   padding: 0px 35px;
   filter: invert();
@@ -446,6 +445,7 @@ a:hover {
 }
 .songName {
   padding-bottom: 1.5%;
+  /* text-align: center; */
 }
 #plyt {
   padding-bottom: 1.5%;
@@ -501,6 +501,10 @@ a:hover {
   .cardContainer {
     height: 50%;
   }
+  .songName{
+    padding-top: 5px;
+    text-align: center;
+  }
   .playerDiv {
     position: absolute;
     width: 50%;
@@ -550,7 +554,11 @@ a:hover {
   .leftContainer {
     position: absolute;
     left: -460px;
-    /* transition: all linear 2s; */
+    transition: all linear .3s;
+  }  
+  .songName{
+    padding-top: 5px;
+    text-align: center;
   }
   .spotify {
     display: flex;
@@ -576,6 +584,10 @@ a:hover {
 @media screen and (max-width: 480px) {
   .rightContainer {
     height: 100vh;
+  }
+  .songName{
+    padding-top: 5px;
+    text-align: center;
   }
   .cardContainer {
     display: flex;
@@ -624,6 +636,8 @@ a:hover {
     z-index: 100;
     height: 99vh;
     width: 97vw;
+  transition: all linear .3s;
+
   }
   .homeSearch {
     margin-top: 10px;

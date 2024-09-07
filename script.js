@@ -13,7 +13,6 @@ function convertSecondsToMinutes(totalSeconds) {
 
 async function getSongs(folder) {
   currFolder = folder;
-
   const username = "MohdShadab9887"; // Replace with your GitHub username
   const repository = "apna-spotify"; // Replace with your repository name
   const directory = "song"; // Replace with your directory name
@@ -259,6 +258,6 @@ setInterval(() => {
     // socialIcon3.style.boxShadow = "0px 0px 4px 1px black";
   }
   scaled = !scaled;
-}, 750);
+}, 670);
 
 main();
