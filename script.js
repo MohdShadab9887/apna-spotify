@@ -31,19 +31,22 @@ async function getSongs() {
 
   return songs;
 }
-
-const playMusic = (track, songs) => {
-  if (currentSong) {
-    currentSong.pause(); // Pause the current audio
-    currentSong.currentTime = 0; // Reset its time
+const playMusic = async (track, songs) => {
+  if (currentSong && !currentSong.paused) {
+    await currentSong.pause();  // Await the pause to complete
+    currentSong.currentTime = 0;  // Reset the time
   }
 
-  currentSong = new Audio(track); // Load the new track
-  currentSong.play();
+  currentSong = new Audio(track);  // Load the new track
+  await currentSong.play();  // Await the play to complete
 
   if (currentSong) {
-    playButton.src = "icons/pauseSong.svg";
+    playButton.src = "icons/pauseSong.svg";  // Update UI
   }
+
+  // Other logic for updating UI, timer, volume, etc.
+
+
 
   currentSong.addEventListener("timeupdate", () => {
     document.querySelector(".timer").innerHTML = `${convertSecondsToMinutes(
@@ -128,7 +131,7 @@ async function main() {
 
   for (const song of songs) {
     // Ensure song is a valid string and contains "/song/"
-    if (typeof song === "string" && song.includes("/song/")) {
+    if (song.includes(".mp3")) {
       let songName = song.split("/song/")[1].replaceAll("%20", " ");
       songUL.innerHTML += `
           <li id="${(i = i + 1)}">
@@ -158,7 +161,7 @@ async function main() {
       div = document.querySelector(".songName").innerHTML = `<div> ${
         e.getElementsByTagName("div")[1].innerHTML
       } </div>`;
-      console.log(e.getElementsByTagName("div ")[1].innerHTML);
+      // console.log(e.getElementsByTagName("div ")[1].innerHTML);
       naam();
       // console.log(currentSong.src.split("/song/")[1].replaceAll("%20", " "));
     });
@@ -184,7 +187,7 @@ document.addEventListener("DOMContentLoaded", function () {
   function hideStartupMessage() {
     startupMessage.style.display = "none";
   }
-  setTimeout(hideStartupMessage, 1150);
+  setTimeout(hideStartupMessage, 1000);
 });
 
 // let i = 0
