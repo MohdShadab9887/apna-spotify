@@ -164,13 +164,14 @@ p:hover {
   border: 1px solid #7c7c7a;
   border-radius: 5px;
   list-style-type: decimal;
-  padding: 5px;
+  padding: 2px;
   filter: invert();
   color: #3d3d3b;
   display: flex;
   justify-content: space-between;
   align-items: center;
   cursor: pointer;
+  gap: 2px;
 }
 .songInfo {
   gap: 10px;
@@ -183,7 +184,10 @@ p:hover {
   justify-content: center;
   align-items: center;
   width: 100px;
-  gap: 5px;
+  gap: 2px;
+}
+.playNow > span{
+  min-width: 43px;
 }
 .footer {
   gap: 10px;
@@ -369,8 +373,8 @@ a:hover {
   color: #7c7c7a;
   padding: 0px 35px;
   filter: invert();
-  position: sticky;
-  bottom: 0;
+  position: absolute;
+  /* bottom: 0; */
 }
 .playerBTN:hover {
   scale: 1.1;
