@@ -1,7 +1,7 @@
 console.log("Lets write JavaScript Code");
 let i = 0;
 let currFolder;
-let currentSong = null; // To track the currently playing audio
+var currentSong = null; // To track the currently playing audio
 function convertSecondsToMinutes(totalSeconds) {
   const seconds = Math.floor(totalSeconds);
   const minutes = Math.floor(seconds / 60);
@@ -31,18 +31,15 @@ async function getSongs() {
 
   return songs;
 }
-const playMusic = async (track, songs) => {
-  if (currentSong && !currentSong.paused) {
-    await currentSong.pause();  // Await the pause to complete
-    currentSong.currentTime = 0;  // Reset the time
-  }
-
-  currentSong = new Audio(track);  // Load the new track
-  await currentSong.play();  // Await the play to complete
-
+// Play selected song and stop the currently playing one
+function playMusic(track) {
   if (currentSong) {
-    playButton.src = "icons/pauseSong.svg";  // Update UI
+    currentSong.pause(); // Pause the currently playing song
   }
+
+  currentSong = new Audio(track);
+  currentSong.play();
+  playButton.src = "icons/pauseSong.svg";
 
   // Other logic for updating UI, timer, volume, etc.
 
