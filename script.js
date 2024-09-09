@@ -29,8 +29,21 @@ async function getSongs() {
     // console.log(files[index].download_url.split("/song/")[1].replaceAll("%20", " "));
   }
 
+  if (!currentSong) {
+    playMusic(songs[0])
+    currentSong.pause(); // Pause the currently playing song
+  playButton.src = "icons/playSong.svg";
+    
+    naam()
+    // track = songs[0];
+    // console.log(songs[0]);
+    // currentSong.src = songs[0];
+    // currentSong.play();
+  }
+
   return songs;
 }
+
 // Play selected song and stop the currently playing one
 function playMusic(track) {
   if (currentSong) {
@@ -41,10 +54,6 @@ function playMusic(track) {
   currentSong.play();
   playButton.src = "icons/pauseSong.svg";
 
-  // Other logic for updating UI, timer, volume, etc.
-
-
-
   currentSong.addEventListener("timeupdate", () => {
     document.querySelector(".timer").innerHTML = `${convertSecondsToMinutes(
       currentSong.currentTime
@@ -52,35 +61,38 @@ function playMusic(track) {
     document.querySelector(".pointer").style.left =
       (currentSong.currentTime / currentSong.duration) * 100 + "%";
   });
+}
 
-  // Volume (+ or -)
-  let vol = document
-    .querySelector(".range")
-    .getElementsByTagName("input")[0]
-    .addEventListener("change", (e) => {
-      currentSong.volume = e.target.value / 100;
-    });
 
-  // seekBar placement
-  document.querySelector(".trackBar").addEventListener("click", (e) => {
-    let percent = (e.offsetX / e.target.getBoundingClientRect().width) * 100;
-    document.querySelector(".pointer").style.left = percent + "%";
-    currentSong.currentTime = (currentSong.duration * percent) / 100;
+
+
+// Volume (+ or -)
+let vol = document
+  .querySelector(".range")
+  .getElementsByTagName("input")[0]
+  .addEventListener("change", (e) => {
+    currentSong.volume = e.target.value / 100;
   });
 
-  let volume_png = document.querySelector(".volume_png");
-  document.querySelector(".volume_png").addEventListener("click", (e) => {
-    if (currentSong.volume > 0) {
-      currentSong.volume = 0;
-      volume_png.src = "/icons/Volume_mute.svg";
-    } else {
-      currentSong.volume = 50 / 100;
-      volume_png.src = "/icons/Volume.svg";
-    }
-  });
-};
+// seekBar placement
+document.querySelector(".trackBar").addEventListener("click", (e) => {
+  let percent = (e.offsetX / e.target.getBoundingClientRect().width) * 100;
+  document.querySelector(".pointer").style.left = percent + "%";
+  currentSong.currentTime = (currentSong.duration * percent) / 100;
+});
 
-// function playPause
+let volume_png = document.querySelector(".volume_png");
+document.querySelector(".volume_png").addEventListener("click", (e) => {
+  if (currentSong.volume > 0) {
+    currentSong.volume = 0;
+    volume_png.src = "/icons/Volume_mute.svg";
+  } else {
+    currentSong.volume = 50 / 100;
+    volume_png.src = "/icons/Volume.svg";
+  }
+});
+
+// Play-Pause toggle
 let playButton = document.getElementById("play");
 playButton.addEventListener("click", (e) => {
   if (currentSong.paused) {
@@ -92,6 +104,7 @@ playButton.addEventListener("click", (e) => {
   }
 });
 
+// Displaying currentSong Name
 function naam() {
   let div = (document.querySelector(
     ".songName"
@@ -179,13 +192,13 @@ closeMenu.addEventListener("click", () => {
   document.querySelector(".leftContainer").style.left = "-500px";
 });
 
-let startupMessage = document.querySelector(".startUpDiv");
-document.addEventListener("DOMContentLoaded", function () {
-  function hideStartupMessage() {
-    startupMessage.style.display = "none";
-  }
-  setTimeout(hideStartupMessage, 1000);
-});
+// let startupMessage = document.querySelector(".startUpDiv");
+// document.addEventListener("DOMContentLoaded", function () {
+//   function hideStartupMessage() {
+//     startupMessage.style.display = "none";
+//   }
+//   setTimeout(hideStartupMessage, 1000);
+// });
 
 // let i = 0
 let closeBtn = document.querySelector(".closeBTN");

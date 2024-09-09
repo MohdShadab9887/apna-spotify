@@ -1,7 +1,7 @@
 body {
   font-family: CircularSp, CircularSp-Arab, CircularSp-Hebr, CircularSp-Cyrl,
-  CircularSp-Grek, CircularSp-Deva, "Helvetica Neue", helvetica, arial,
-  "Hiragino Kaku Gothic ProN", Meiryo, "MS Gothic";
+    CircularSp-Grek, CircularSp-Deva, "Helvetica Neue", helvetica, arial,
+    "Hiragino Kaku Gothic ProN", Meiryo, "MS Gothic";
   background-color: black;
   color: white;
   display: flex;
@@ -25,8 +25,8 @@ body::-webkit-scrollbar {
     transform: scale(2000);
     opacity: 1;
   }
-} 
- .startUpDiv {
+}
+.startUpDiv {
   height: 100vh;
   width: 100vw;
   position: absolute;
@@ -104,7 +104,7 @@ p:hover {
   height: 30px;
   width: 30px;
   filter: invert();
-  transition: all ease-in .5s ;
+  transition: all ease-in 0.5s;
   transform: scale(1.3);
 }
 .iconPNG {
@@ -132,7 +132,6 @@ p:hover {
   filter: invert(1);
   height: 30px;
   width: 30px;
-  
 }
 .libDiv {
   display: flex;
@@ -168,7 +167,7 @@ p:hover {
   filter: invert();
   color: #3d3d3b;
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-; */
   align-items: center;
   cursor: pointer;
   gap: 2px;
@@ -183,10 +182,9 @@ p:hover {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100px;
   gap: 2px;
 }
-.playNow > span{
+.playNow > span {
   min-width: 43px;
 }
 .footer {
@@ -392,7 +390,6 @@ a:hover {
 .volume {
   display: flex;
   height: 10px;
-  width: 10px;
   align-items: center;
   border-radius: 10px;
 }
@@ -411,6 +408,7 @@ a:hover {
 .range {
   align-items: center;
   width: 80px;
+  color: green;
 }
 .pointer {
   height: 17px;
@@ -419,7 +417,7 @@ a:hover {
   background-color: rgb(33, 121, 253);
   position: relative;
   top: -4px;
-  align-self: center;
+  align-self: start;
   left: 0%;
   transition: left 0.5s;
 }
@@ -441,7 +439,8 @@ a:hover {
   display: flex;
   align-items: center;
   gap: 12px;
-  width: 140px;
+  width: 200px;
+  /* background-color:red; */
 }
 .volume_png {
   height: 20px;
@@ -449,13 +448,15 @@ a:hover {
 }
 .songName {
   padding-bottom: 1.5%;
-  /* text-align: center; */
+  width: 300px;
 }
 #plyt {
   padding-bottom: 1.5%;
 }
 .timer {
   padding-bottom: 1.5%;
+  width: 150px;
+  text-align: center;
 }
 .socialDiv {
   filter: invert();
@@ -463,35 +464,35 @@ a:hover {
   align-items: center;
   bottom: 9px;
   right: 13px;
-  
 }
 .socialDiv > * {
   padding: 5px;
   padding-top: 5px;
- 
 }
 .socialDiv > a > img:hover {
   transition: all linear 0.1s;
   transform: scale(1.2);
 }
 
-.socialIcon1, .socialIcon2, .socialIcon3{
+.socialIcon1,
+.socialIcon2,
+.socialIcon3 {
   background-color: none;
   border-radius: 7px;
   /* transition: all ease-in-out .70s ; */
 }
 
-.socialIcon1{
+.socialIcon1 {
   transition: all ease-in-out 0.3s;
-  transform: scale(1.2); 
+  transform: scale(1.2);
 }
-.socialIcon2{
+.socialIcon2 {
   transition: all ease-in-out 0.3s;
-  transform: scale(1.2); 
+  transform: scale(1.2);
 }
-.socialIcon3{
+.socialIcon3 {
   transition: all ease-in-out 0.3s;
-  transform: scale(1.2); 
+  transform: scale(1.2);
 }
 
 @media screen and (max-width: 1800px) {
@@ -505,7 +506,7 @@ a:hover {
   .cardContainer {
     height: 50%;
   }
-  .songName{
+  .songName {
     padding-top: 5px;
     text-align: center;
   }
@@ -558,11 +559,12 @@ a:hover {
   .leftContainer {
     position: absolute;
     left: -460px;
-    transition: all linear .3s;
-  }  
-  .songName{
+    transition: all linear 0.3s;
+  }
+  .songName {
     padding-top: 5px;
     text-align: center;
+    width: 200px;
   }
   .spotify {
     display: flex;
@@ -589,7 +591,7 @@ a:hover {
   .rightContainer {
     height: 100vh;
   }
-  .songName{
+  .songName {
     padding-top: 5px;
     text-align: center;
   }
@@ -607,6 +609,26 @@ a:hover {
     right: 20px;
     opacity: 0;
   }
+  /* .playNow {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  width: 100px;
+  gap: 2px;
+}
+.playNow > span {
+  min-width: 43px;
+display: flex;
+  justify-content: end;
+} */
+
+.songList>ul>li>div:nth-child(3){
+  position: absolute;
+  right: 0;
+  z-index: 10;
+  background-color: #ececec;
+  height: 50px;
+}
   .card {
     margin-bottom: -6px;
     width: 350px;
@@ -624,7 +646,10 @@ a:hover {
     height: 70px;
     border: 1px solid #7c7c7a;
     font-size: 13px;
+    display: flex;
+    flex-wrap: nowrap;
   }
+
   .songInfo {
     font-size: 16px;
   }
@@ -640,8 +665,7 @@ a:hover {
     z-index: 100;
     height: 99vh;
     width: 97vw;
-  transition: all linear .3s;
-
+    transition: all linear 0.3s;
   }
   .homeSearch {
     margin-top: 10px;
