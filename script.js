@@ -29,31 +29,27 @@ async function getSongs() {
     // console.log(files[index].download_url.split("/song/")[1].replaceAll("%20", " "));
   }
 
+  // setting 1st song to play
   if (!currentSong) {
-    playMusic(songs[0])
-    currentSong.pause(); // Pause the currently playing song
-  playButton.src = "icons/playSong.svg";
-    
-    naam()
-    // track = songs[0];
-    // console.log(songs[0]);
-    // currentSong.src = songs[0];
-    // currentSong.play();
+    playMusic(songs[0]);
+    currentSong.pause();
+    playButton.src = "icons/playSong.svg";
+    currentSongName();
   }
-
   return songs;
 }
 
-// Play selected song and stop the currently playing one
+// Playing song
 function playMusic(track) {
   if (currentSong) {
-    currentSong.pause(); // Pause the currently playing song
+    currentSong.pause();
   }
 
   currentSong = new Audio(track);
   currentSong.play();
   playButton.src = "icons/pauseSong.svg";
 
+  // TimeDuration of the Song
   currentSong.addEventListener("timeupdate", () => {
     document.querySelector(".timer").innerHTML = `${convertSecondsToMinutes(
       currentSong.currentTime
@@ -62,35 +58,6 @@ function playMusic(track) {
       (currentSong.currentTime / currentSong.duration) * 100 + "%";
   });
 }
-
-
-
-
-// Volume (+ or -)
-let vol = document
-  .querySelector(".range")
-  .getElementsByTagName("input")[0]
-  .addEventListener("change", (e) => {
-    currentSong.volume = e.target.value / 100;
-  });
-
-// seekBar placement
-document.querySelector(".trackBar").addEventListener("click", (e) => {
-  let percent = (e.offsetX / e.target.getBoundingClientRect().width) * 100;
-  document.querySelector(".pointer").style.left = percent + "%";
-  currentSong.currentTime = (currentSong.duration * percent) / 100;
-});
-
-let volume_png = document.querySelector(".volume_png");
-document.querySelector(".volume_png").addEventListener("click", (e) => {
-  if (currentSong.volume > 0) {
-    currentSong.volume = 0;
-    volume_png.src = "/icons/Volume_mute.svg";
-  } else {
-    currentSong.volume = 50 / 100;
-    volume_png.src = "/icons/Volume.svg";
-  }
-});
 
 // Play-Pause toggle
 let playButton = document.getElementById("play");
@@ -104,8 +71,38 @@ playButton.addEventListener("click", (e) => {
   }
 });
 
+// Volume (+ or -)
+let vol = document
+  .querySelector(".range")
+  .getElementsByTagName("input")[0]
+  .addEventListener("change", (e) => {
+    currentSong.volume = e.target.value / 100;
+  });
+
+// Mute Unmute functioning
+let setVolume = document.querySelector(".volume_png");
+document.querySelector(".volume_png").addEventListener("click", (e) => {
+  if (currentSong.muted) {
+    currentSong.muted = false;
+    setVolume.src = "/icons/Volume.svg";
+  } else {
+    // Mute the audio
+    currentSong.muted = true;
+    setVolume.src = "/icons/Volume_mute.svg";
+  }
+});
+
+// seekBar placement
+document.querySelector(".trackBar").addEventListener("click", (e) => {
+  let percent = (e.offsetX / e.target.getBoundingClientRect().width) * 100;
+  document.querySelector(".pointer").style.left = percent + "%";
+  currentSong.currentTime = (currentSong.duration * percent) / 100;
+
+  // class="w3-orange" style="height:24px;width:80%"
+});
+
 // Displaying currentSong Name
-function naam() {
+function currentSongName() {
   let div = (document.querySelector(
     ".songName"
   ).innerHTML = `<div> ${currentSong.src
@@ -116,22 +113,24 @@ function naam() {
 async function main() {
   let songs = await getSongs();
 
+  // Prev song
   prev.addEventListener("click", () => {
     console.log("prev clicked");
     let index = songs.indexOf(currentSong.src);
     if (index - 1 >= 0) {
       playMusic(songs[index - 1]);
     }
-    naam();
+    currentSongName();
   });
+
+  // Next Song
   next.addEventListener("click", () => {
     console.log("next clicked");
     let index = songs.indexOf(currentSong.src);
     if (index + 1 < songs.length) {
       playMusic(songs[index + 1]);
     }
-    naam();
-    // div = (document.querySelector(".songName").innerHTML = `<div> ${currentSong.src.split("/song/")[1].replaceAll("%20", " ")} </div>`);
+    currentSongName();
   });
 
   // Showing all the songs in the Playlist
@@ -140,7 +139,6 @@ async function main() {
     .getElementsByTagName("ul")[0];
 
   for (const song of songs) {
-    // Ensure song is a valid string and contains "/song/"
     if (song.includes(".mp3")) {
       let songName = song.split("/song/")[1].replaceAll("%20", " ");
       songUL.innerHTML += `
@@ -167,46 +165,41 @@ async function main() {
         "https://raw.githubusercontent.com/MohdShadab9887/apna-spotify/main/song/" +
           e.getElementsByTagName("div")[1].innerHTML
       );
-      // console.log(e);
       div = document.querySelector(".songName").innerHTML = `<div> ${
         e.getElementsByTagName("div")[1].innerHTML
       } </div>`;
-      // console.log(e.getElementsByTagName("div ")[1].innerHTML);
-      naam();
-      // console.log(currentSong.src.split("/song/")[1].replaceAll("%20", " "));
+      currentSongName();
     });
   });
 }
 
-// hamberger_div
+// hamberger_div Toggle
 let openMenu = document.querySelector(".hamberger_div");
 let closeMenu = document.querySelector(".closeBTN");
 
 openMenu.addEventListener("click", () => {
   document.querySelector(".leftContainer").style.zIndex = 10;
   document.querySelector(".leftContainer").style.left = "5px";
-  // myHam.style.display = "none";
 });
 
 closeMenu.addEventListener("click", () => {
   document.querySelector(".leftContainer").style.left = "-500px";
 });
 
-// let startupMessage = document.querySelector(".startUpDiv");
-// document.addEventListener("DOMContentLoaded", function () {
-//   function hideStartupMessage() {
-//     startupMessage.style.display = "none";
-//   }
-//   setTimeout(hideStartupMessage, 1000);
-// });
+// StatUp Animation
+let startupMessage = document.querySelector(".startUpDiv");
+document.addEventListener("DOMContentLoaded", function () {
+  function hideStartupMessage() {
+    startupMessage.style.display = "none";
+  }
+  setTimeout(hideStartupMessage, 1000);
+});
 
-// let i = 0
 let closeBtn = document.querySelector(".closeBTN");
 let socialBtn = document.querySelector(".socialDiv");
 let socialIcon1 = document.querySelector(".socialIcon1");
 let socialIcon2 = document.querySelector(".socialIcon2");
 let socialIcon3 = document.querySelector(".socialIcon3");
-// console.log(socialBtn);
 
 let scaled = false;
 setInterval(() => {

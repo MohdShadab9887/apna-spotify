@@ -364,7 +364,7 @@ a:hover {
   height: 10vh;
   width: 90%;
   margin: 0px auto;
-  background-color: #00000004;
+  background-color: #ececec;
   border: 1px solid #cacac8;
   border-radius: 50px;
   /* text-align: center; */
@@ -598,7 +598,7 @@ a:hover {
   .cardContainer {
     display: flex;
     justify-content: center;
-    height: 60%;
+    height: 70%;
   }
   .hoverImg {
     height: 50px;
@@ -622,17 +622,17 @@ display: flex;
   justify-content: end;
 } */
 
-.songList>ul>li>div:nth-child(3){
-  position: absolute;
-  right: 0;
-  z-index: 10;
-  background-color: #ececec;
-  height: 50px;
-}
+  .songList > ul > li > div:nth-child(3) {
+    position: absolute;
+    right: 0;
+    z-index: 10;
+    background-color: #ececec;
+    height: 50px;
+  }
   .card {
     margin-bottom: -6px;
-    width: 350px;
-    height: 435px;
+    width: 255px;
+    height: 362px;
   }
   .card > h4 {
     font-size: 30px;
@@ -643,7 +643,7 @@ display: flex;
   }
   .songList > ul > li {
     margin: 10px 0;
-    height: 70px;
+    height: 55px;
     border: 1px solid #7c7c7a;
     font-size: 13px;
     display: flex;
