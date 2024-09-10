@@ -174,7 +174,7 @@ async function main() {
       
       `<div  id="${(i = i + 1)}" class="card">          
           <img class="songIcon" src="icons/music.svg" alt="">
-          <div>${songName}</div>
+          <div class="songNameList">${songName}</div>
           <div class="playNow">
             <span>Play Now</span>
             <img src="icons/playSong.svg" alt="">

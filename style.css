@@ -185,7 +185,7 @@ p:hover {
   gap: 2px;
 }
 .playNow > span {
-  min-width: 43px;
+  min-width: 70px;
 }
 .footer {
   gap: 10px;
@@ -468,7 +468,7 @@ a:hover {
   width: 20px;
 }
 .songName {
-  padding-bottom: 1.5%;
+  /* padding-bottom: 1.5%; */
   width: 300px;
 }
 #plyt {
@@ -610,7 +610,7 @@ a:hover {
 
 @media screen and (max-width: 480px) {
   .rightContainer {
-    height: 100vh;
+    height: 90vh;
   }
   .songName {
     padding-top: 5px;
@@ -651,9 +651,12 @@ display: flex;
     height: 50px;
   }
   .card {
+
     margin-bottom: -6px;
-/*     width: 255px;
+    /* width: 255px;
     height: 362px; */
+    gap: 10px;
+    max-width: 415px;
   }
   .card > h4 {
     font-size: 30px;
