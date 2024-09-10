@@ -598,10 +598,11 @@ a:hover {
   .hamberger_div {
     display: block;
     align-content: center;
-    width: 50px;
+    width: 70px;
     filter: invert(1);
     padding-left: 10px;
   }
+  
   .playerDiv {
     height: auto;
     width: 90%;
@@ -611,6 +612,9 @@ a:hover {
 @media screen and (max-width: 480px) {
   .rightContainer {
     height: 90vh;
+  }
+  .hamberger_png{
+    width: 33px;
   }
   .songName {
     padding-top: 5px;
@@ -630,18 +634,6 @@ a:hover {
     right: 20px;
     opacity: 0;
   }
-  /* .playNow {
-  display: flex;
-  justify-content: end;
-  align-items: center;
-  width: 100px;
-  gap: 2px;
-}
-.playNow > span {
-  min-width: 43px;
-display: flex;
-  justify-content: end;
-} */
 
   .songList > ul > li > div:nth-child(3) {
     position: absolute;
@@ -687,8 +679,8 @@ display: flex;
   .leftContainer {
     left: -500px;
     z-index: 100;
-    height: 99vh;
-    width: 97vw;
+    height: 90vh;
+    width: 99vw;
     transition: all linear 0.3s;
   }
   .homeSearch {
