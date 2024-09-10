@@ -1,7 +1,7 @@
 console.log("Lets write JavaScript Code");
 let i = 0;
 let currFolder;
-var currentSong = null; // To track the currently playing audio
+var currentSong = null;
 function convertSecondsToMinutes(totalSeconds) {
   const seconds = Math.floor(totalSeconds);
   const minutes = Math.floor(seconds / 60);
@@ -12,16 +12,17 @@ function convertSecondsToMinutes(totalSeconds) {
 }
 
 async function getSongs() {
-  // currFolder = folder;
-  const owner = "MohdShadab9887"; // Replace with your GitHub username
-  const repo = "apna-spotify"; // Replace with your repository name
-  const path = "/song"; // Replace with the path to the directory containing songs
+ 
+  const owner = "MohdShadab9887";
+  const repo = "apna-spotify";
+  const path = "/song"; 
 
   let response = await fetch(
     `https://api.github.com/repos/${owner}/${repo}/contents${path}`
   );
   let files = await response.json();
   // console.log(files);
+  
   // To get songs Links
   let songs = [];
   for (let index = 0; index < files.length; index++) {
@@ -86,7 +87,6 @@ document.querySelector(".volume_png").addEventListener("click", (e) => {
     currentSong.muted = false;
     setVolume.src = "/icons/Volume.svg";
   } else {
-    // Mute the audio
     currentSong.muted = true;
     setVolume.src = "/icons/Volume_mute.svg";
   }
@@ -97,8 +97,6 @@ document.querySelector(".trackBar").addEventListener("click", (e) => {
   let percent = (e.offsetX / e.target.getBoundingClientRect().width) * 100;
   document.querySelector(".pointer").style.left = percent + "%";
   currentSong.currentTime = (currentSong.duration * percent) / 100;
-
-  // class="w3-orange" style="height:24px;width:80%"
 });
 
 // Displaying currentSong Name
@@ -219,13 +217,13 @@ closeMenu.addEventListener("click", () => {
 });
 
 // StatUp Animation
-// let startupMessage = document.querySelector(".startUpDiv");
-// document.addEventListener("DOMContentLoaded", function () {
-//   function hideStartupMessage() {
-//     startupMessage.style.display = "none";
-//   }
-//   setTimeout(hideStartupMessage, 1000);
-// });
+let startupMessage = document.querySelector(".startUpDiv");
+document.addEventListener("DOMContentLoaded", function () {
+  function hideStartupMessage() {
+    startupMessage.style.display = "none";
+  }
+  setTimeout(hideStartupMessage, 1000);
+});
 
 let closeBtn = document.querySelector(".closeBTN");
 let socialBtn = document.querySelector(".socialDiv");
