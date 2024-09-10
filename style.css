@@ -287,7 +287,7 @@ a {
   cursor: default;
 }
 .card {
-  display:flex;
+  display: flex;
   gap: 20px;
   /* flex-direction: row; */
   position: relative;
@@ -318,7 +318,6 @@ a {
   bottom: 70px;
   right: 12px;
   opacity: 0;
- 
 }
 .card:hover {
   background-color: hsl(0, 0%, 14%);
@@ -337,7 +336,7 @@ a {
     z-index: 10;
   }
 }
-.card  img {
+.card img {
   width: 35px;
   height: 32px;
   filter: invert(1);
@@ -602,7 +601,7 @@ a:hover {
     filter: invert(1);
     padding-left: 10px;
   }
-  
+
   .playerDiv {
     height: auto;
     width: 90%;
@@ -611,9 +610,9 @@ a:hover {
 
 @media screen and (max-width: 480px) {
   .rightContainer {
-    height: 100%;
+    /* height: 100%; */
   }
-  .hamberger_png{
+  .hamberger_png {
     width: 33px;
   }
   .songName {
@@ -624,6 +623,7 @@ a:hover {
     display: flex;
     justify-content: center;
     height: 70%;
+    scroll-behavior: smooth;
   }
   .hoverImg {
     height: 50px;
@@ -643,7 +643,6 @@ a:hover {
     height: 50px;
   }
   .card {
-
     margin-bottom: -6px;
     /* width: 255px;
     height: 362px; */
@@ -682,7 +681,11 @@ a:hover {
     height: 100%;
     width: 99vw;
     transition: all linear 0.3s;
+    
   }
+  /* .rightContainer{
+display:none;
+  } */
   .homeSearch {
     margin-top: 10px;
     padding: 0px -10px 10px 30px;
@@ -696,9 +699,9 @@ a:hover {
   .playerDiv {
     width: 90%;
     margin: auto;
-    left: 20px;
+    /* left: 20px; */
     height: auto;
-    position: sticky;
-    bottom: 0%;
+    position: static;
+    /* bottom: 0%; */
   }
 }
