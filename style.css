@@ -611,7 +611,7 @@ a:hover {
 
 @media screen and (max-width: 480px) {
   .rightContainer {
-    height: 90vh;
+    height: 100%;
   }
   .hamberger_png{
     width: 33px;
@@ -679,7 +679,7 @@ a:hover {
   .leftContainer {
     left: -500px;
     z-index: 100;
-    height: 90vh;
+    height: 100%;
     width: 99vw;
     transition: all linear 0.3s;
   }
@@ -690,7 +690,7 @@ a:hover {
   }
   .library {
     width: 95vw;
-    height: 100vh;
+    max-height: 100%;
   }
   /* ----------------------------------------------- */
   .playerDiv {
@@ -698,7 +698,7 @@ a:hover {
     margin: auto;
     left: 20px;
     height: auto;
-    position: absolute;
-    bottom: 10px;
+    position: sticky;
+    bottom: 0%;
   }
 }
