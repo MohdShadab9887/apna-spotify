@@ -21,7 +21,7 @@ async function getSongs() {
     `https://api.github.com/repos/${owner}/${repo}/contents${path}`
   );
   let files = await response.json();
-  // console.log(files)
+  // console.log(files);
   // To get songs Links
   let songs = [];
   for (let index = 0; index < files.length; index++) {
@@ -134,40 +134,72 @@ async function main() {
   });
 
   // Showing all the songs in the Playlist
-  let songUL = document
-    .querySelector(".songList")
-    .getElementsByTagName("ul")[0];
+  // let songUL = document
+  //   .querySelector(".songList")
+  //   .getElementsByTagName("ul")[0];
+
+  // for (const song of songs) {
+  //   if (song.includes(".mp3")) {
+  //     let songName = song.split("/song/")[1].replaceAll("%20", " ");
+  //     songUL.innerHTML += `
+  //         <li id="${(i = i + 1)}">
+  //           <div>
+  //             <img class="menuLIicon" src="icons/music.svg" alt="">
+  //           </div>
+  //           <div>${songName}</div>
+  //           <div class="playNow">
+  //             <span>Play Now</span>
+  //             <img src="icons/playSong.svg" alt="">
+  //           </div>
+  //         </li>`;
+  //   }
+  // }
+
+  // Showing all the songs in the Playlist
+  let songUL = document.querySelector(".cardContainer");
 
   for (const song of songs) {
+    // console.log(song)
     if (song.includes(".mp3")) {
       let songName = song.split("/song/")[1].replaceAll("%20", " ");
-      songUL.innerHTML += `
-          <li id="${(i = i + 1)}">
-            <div>
-              <img class="menuLIicon" src="icons/music.svg" alt="">
-            </div> 
-            <div>${songName}</div>            
-            <div class="playNow">
-              <span>Play Now</span>
-              <img src="icons/playSong.svg" alt="">
-            </div>
-          </li>`;
+      songUL.innerHTML += 
+      // `<div id="${(i = i + 1)}" class="card">
+      // <img class="songIcon" src="icons/music.svg" alt="">
+      // <div>${songName}</div>
+      //  <div class="playNow">
+      //      <span>Play Now</span>
+      //      <img src="icons/playSong.svg" alt="">
+      //    </div>
+      // </div>`
+      
+      `<div  id="${(i = i + 1)}" class="card">          
+          <img class="songIcon" src="icons/music.svg" alt="">
+          <div>${songName}</div>
+          <div class="playNow">
+            <span>Play Now</span>
+            <img src="icons/playSong.svg" alt="">
+          </div>
+        </div>`;
     }
   }
   // console.log(songs);
 
   // Attach an event listener to each song
   Array.from(
-    document.querySelector(".songList").getElementsByTagName("li")
+    document.querySelector(".cardContainer").getElementsByTagName("div")
   ).forEach((e) => {
+    // console.log("tttt");
     e.addEventListener("click", () => {
+      console.log(e.getElementsByTagName("div")[0].innerText);
       playMusic(
         "https://raw.githubusercontent.com/MohdShadab9887/apna-spotify/main/song/" +
-          e.getElementsByTagName("div")[1].innerHTML
+          e.getElementsByTagName("div")[0].innerHTML
       );
-      div = document.querySelector(".songName").innerHTML = `<div> ${
-        e.getElementsByTagName("div")[1].innerHTML
-      } </div>`;
+      // console.log(e.getElementsByTagName("div")[0].innerHTML)
+
+      // div = document.querySelector(".songName").innerHTML = `<div> ${
+      //   e.getElementsByTagName("div")[1].innerHTML
+      // } </div>`;
       currentSongName();
     });
   });
@@ -187,13 +219,13 @@ closeMenu.addEventListener("click", () => {
 });
 
 // StatUp Animation
-let startupMessage = document.querySelector(".startUpDiv");
-document.addEventListener("DOMContentLoaded", function () {
-  function hideStartupMessage() {
-    startupMessage.style.display = "none";
-  }
-  setTimeout(hideStartupMessage, 1000);
-});
+// let startupMessage = document.querySelector(".startUpDiv");
+// document.addEventListener("DOMContentLoaded", function () {
+//   function hideStartupMessage() {
+//     startupMessage.style.display = "none";
+//   }
+//   setTimeout(hideStartupMessage, 1000);
+// });
 
 let closeBtn = document.querySelector(".closeBTN");
 let socialBtn = document.querySelector(".socialDiv");
