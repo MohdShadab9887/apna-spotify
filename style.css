@@ -625,6 +625,8 @@ a:hover {
     justify-content: center;
     height: 70%;
     scroll-behavior: smooth;
+        padding-right: 15px
+
   }
   .hoverImg {
     height: 50px;
