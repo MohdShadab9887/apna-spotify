@@ -585,7 +585,7 @@ a:hover {
   .songName {
     padding-top: 5px;
     text-align: center;
-    width: 200px;
+    width: 100%;
   }
   .spotify {
     display: flex;
