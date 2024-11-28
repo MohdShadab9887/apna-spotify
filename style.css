@@ -42,7 +42,7 @@ body::-webkit-scrollbar {
   height: 100px;
   width: 330px;
   animation: zoomAndDisappear 5s ease-in 0.7s forwards;
-  /* transition-delay: 0.5s; */
+  transition-delay: 0.5s;
 }
 button {
   cursor: pointer;
@@ -54,11 +54,11 @@ button {
   height: 100vh;
 }
 .rightContainer {
-  margin-top: 5px;
   background-color: #121212;
-  height: 98.8vh;
+  height: 100vh;
   width: 100%;
   border-radius: 8px;
+  display: flex;
   flex-direction: column;
 }
 .homeSearch {
@@ -167,7 +167,6 @@ p:hover {
   filter: invert();
   color: #3d3d3b;
   display: flex;
-  /* justify-content: space-; */
   align-items: center;
   cursor: pointer;
   gap: 2px;
@@ -287,38 +286,29 @@ a {
   cursor: default;
 }
 .card {
-  display:flex;
+  display: flex;
   gap: 20px;
-  /* flex-direction: row; */
-  position: relative;
+  flex-direction: row;
   cursor: pointer;
   background-color: #1c1b1b;
   border-radius: 5px;
   padding: 8px;
   align-items: center;
-  /* width: 140px;
-  height: 205px; */
-  /* width: 400px; */
   height: 50px;
-  /* border-radius: 5px; */
 }
-/* .songIcon{
-  color:red;
-  height: 10px;
 
-} */
 .card > h4 {
   font-size: 20px;
   width: 350px;
 }
 .hoverImg {
-  height: 25px;
-  max-width: 25px;
+  height: 20px;
+  max-width: 20px;
   position: absolute;
-  bottom: 70px;
-  right: 12px;
+  bottom: 6px;
+  right: 10px;
+  top: 57%;
   opacity: 0;
- 
 }
 .card:hover {
   background-color: hsl(0, 0%, 14%);
@@ -326,55 +316,24 @@ a {
   transform: scale(1.03);
   box-shadow: 0px 0px 5px 1px #bc7e05;
   position: relative;
-  img {
-    transition: all linear 0.1s;
-    transform: scale(1.04);
-  }
-  .hoverImg {
-    transition: all ease 0.4s;
-    opacity: 1;
-    bottom: 83px;
-    z-index: 10;
-  }
 }
-.card  img {
-  width: 35px;
-  height: 32px;
-  filter: invert(1);
-}
+
 a:hover {
   color: white;
   transition: all ease-out 0.1s;
-}
-/* .card > * {
-  padding-top: 5px;
-} */
-.card img {
-  padding-top: 0px;
-  border-radius: 4px;
-  /* width: 100%; */
-  object-fit: contain;
-}
-.card > p {
-  font-size: 13px;
 }
 .cardContainer {
   display: flex;
   justify-content: flex-start;
   overflow: scroll;
-  padding-left: 15px;
-  padding-top: 5px;
+  padding: 15px;
   gap: 20px;
   flex-wrap: wrap;
-  height: 70%;
+  height: 55%;
   width: 97%;
   margin: 10px auto;
 }
-/* .websiteImgDiv{
-  width: 100%;
-  display: flex;
-  justify-content: center;
-} */
+
 .cardContainer::-webkit-scrollbar {
   display: none;
 }
@@ -383,30 +342,17 @@ a:hover {
   justify-content: space-between;
   align-items: center;
   height: 10vh;
-  width: 90%;
+  width: 70%;
   margin: 0px auto;
   background-color: #ececec;
   border: 1px solid #cacac8;
   border-radius: 50px;
-  /* text-align: center; */
   color: #7c7c7a;
   padding: 0px 35px;
   filter: invert();
-  position: absolute;
-  /* bottom: 0; */
-}
-.playerBTN:hover {
-  scale: 1.1;
-  border-radius: 10px;
-  padding: 0px 5px;
-  box-shadow: inset 5px 5px 10px rgba(0, 0, 0, 0.5);
-  cursor: pointer;
-}
-.volume_png:hover {
-  scale: 1.1;
-  border-radius: 5px;
-  box-shadow: inset 5px 5px 10px rgba(0, 0, 0, 0.5);
-  cursor: pointer;
+  position: fixed;
+  right: 7%;
+  bottom: 5%;
 }
 .volume {
   display: flex;
@@ -519,8 +465,6 @@ a:hover {
 @media screen and (max-width: 1800px) {
   .playerDiv {
     margin: 0px auto;
-    position: relative;
-    bottom: -15px;
   }
 }
 @media screen and (max-width: 1100px) {
@@ -602,7 +546,7 @@ a:hover {
     filter: invert(1);
     padding-left: 10px;
   }
-  
+
   .playerDiv {
     height: auto;
     width: 90%;
@@ -610,10 +554,10 @@ a:hover {
 }
 
 @media screen and (max-width: 480px) {
-  .rightContainer {
-    height: 100%;
+  s .rightContainer {
+    height: 99vh;
   }
-  .hamberger_png{
+  .hamberger_png {
     width: 33px;
   }
   .songName {
@@ -621,20 +565,20 @@ a:hover {
     text-align: center;
   }
   .cardContainer {
-    display: flex;
+    /* display: flex;  */
     justify-content: center;
-    height: 70%;
+    height: 65%;
     scroll-behavior: smooth;
-        padding-right: 15px
-
+    padding-right: 15px;
+    /* padding-bottom: 20%; */
   }
   .hoverImg {
     height: 50px;
-    max-width: 50px;
+    max-width: 25px;
     position: absolute;
     bottom: 10px;
-    top: 280px;
-    right: 20px;
+    top: 45px;
+    right: 12px;
     opacity: 0;
   }
 
@@ -646,7 +590,6 @@ a:hover {
     height: 50px;
   }
   .card {
-
     margin-bottom: -6px;
     /* width: 255px;
     height: 362px; */
@@ -702,7 +645,36 @@ a:hover {
     margin: auto;
     left: 20px;
     height: auto;
-    position: sticky;
+    position: fixed;
     bottom: 0%;
   }
+}
+.singerFolder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
+  width: 11%;
+  padding: 5px;
+  height: auto;
+}
+.singerFolder > h4 {
+  font-size: 10px;
+}
+.singerDiv {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  width: 100%;
+}
+
+.singerFolder img {
+  border-radius: 100%;
+  height: 50px;
+}
+
+.singerFolder > * {
+  padding-top: 5px;
 }

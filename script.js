@@ -1,4 +1,5 @@
 console.log("Lets write JavaScript Code");
+let songId = "mp3";
 let i = 0;
 let currFolder;
 var currentSong = null;
@@ -12,22 +13,21 @@ function convertSecondsToMinutes(totalSeconds) {
 }
 
 async function getSongs() {
- 
   const owner = "MohdShadab9887";
   const repo = "apna-spotify";
-  const path = "/song"; 
+  const path = "/song";
 
   let response = await fetch(
     `https://api.github.com/repos/${owner}/${repo}/contents${path}`
   );
   let files = await response.json();
-  // console.log(files);
-  
+
   // To get songs Links
   let songs = [];
   for (let index = 0; index < files.length; index++) {
-    songs.push(files[index].download_url);
-    // console.log(files[index].download_url.split("/song/")[1].replaceAll("%20", " "));
+    if (files[index].download_url.includes(songId)) {
+      songs.push(files[index].download_url);
+    }
   }
 
   // setting 1st song to play
@@ -47,7 +47,7 @@ function playMusic(track) {
   }
 
   currentSong = new Audio(track);
-  currentSong.play();
+  currentSong?.play();
   playButton.src = "icons/pauseSong.svg";
 
   // TimeDuration of the Song
@@ -64,10 +64,10 @@ function playMusic(track) {
 let playButton = document.getElementById("play");
 playButton.addEventListener("click", (e) => {
   if (currentSong.paused) {
-    currentSong.play();
+    currentSong?.play();
     playButton.src = "icons/pauseSong.svg";
   } else {
-    currentSong.pause();
+    currentSong?.pause();
     playButton.src = "icons/playSong.svg";
   }
 });
@@ -108,12 +108,24 @@ function currentSongName() {
     .replaceAll("%20", " ")} </div>`);
 }
 
+const mysongDiv = document.querySelector(".rightContainer");
+mysongDiv.addEventListener("click", (event) => {
+  const clickedElement = event.target.closest(".singerFolder");
+  if (clickedElement) {
+    songId = clickedElement.id;
+    main();
+  }
+});
+
+document.getElementById("showAll").addEventListener("click", () => {
+  songId = "mp3";
+  main(); // Re-render the list
+});
+
 async function main() {
   let songs = await getSongs();
-
   // Prev song
   prev.addEventListener("click", () => {
-    console.log("prev clicked");
     let index = songs.indexOf(currentSong.src);
     if (index - 1 >= 0) {
       playMusic(songs[index - 1]);
@@ -123,7 +135,6 @@ async function main() {
 
   // Next Song
   next.addEventListener("click", () => {
-    console.log("next clicked");
     let index = songs.indexOf(currentSong.src);
     if (index + 1 < songs.length) {
       playMusic(songs[index + 1]);
@@ -131,46 +142,17 @@ async function main() {
     currentSongName();
   });
 
-  // Showing all the songs in the Playlist
-  // let songUL = document
-  //   .querySelector(".songList")
-  //   .getElementsByTagName("ul")[0];
-
-  // for (const song of songs) {
-  //   if (song.includes(".mp3")) {
-  //     let songName = song.split("/song/")[1].replaceAll("%20", " ");
-  //     songUL.innerHTML += `
-  //         <li id="${(i = i + 1)}">
-  //           <div>
-  //             <img class="menuLIicon" src="icons/music.svg" alt="">
-  //           </div>
-  //           <div>${songName}</div>
-  //           <div class="playNow">
-  //             <span>Play Now</span>
-  //             <img src="icons/playSong.svg" alt="">
-  //           </div>
-  //         </li>`;
-  //   }
-  // }
-
-  // Showing all the songs in the Playlist
-  let songUL = document.querySelector(".cardContainer");
-
-  for (const song of songs) {
-    // console.log(song)
-    if (song.includes(".mp3")) {
-      let songName = song.split("/song/")[1].replaceAll("%20", " ");
-      songUL.innerHTML += 
-      // `<div id="${(i = i + 1)}" class="card">
-      // <img class="songIcon" src="icons/music.svg" alt="">
-      // <div>${songName}</div>
-      //  <div class="playNow">
-      //      <span>Play Now</span>
-      //      <img src="icons/playSong.svg" alt="">
-      //    </div>
-      // </div>`
-      
-      `<div  id="${(i = i + 1)}" class="card">          
+  const myfunc = () => {
+    // Showing all the songs in the Playlist
+    const songUL = document.querySelector(".cardContainer");
+    songUL.innerHTML = "";
+    for (const song of songs) {
+      if (song.includes(".mp3")) {
+        let songName = song
+          .split("/song/")[1]
+          .replaceAll("%20", " ")
+          .replaceAll("%26", "&");
+        songUL.innerHTML += `<div  id="${(i = i + 1)}" class="card">          
           <img class="songIcon" src="icons/music.svg" alt="">
           <div class="songNameList">${songName}</div>
           <div class="playNow">
@@ -178,26 +160,20 @@ async function main() {
             <img src="icons/playSong.svg" alt="">
           </div>
         </div>`;
+      }
     }
-  }
-  // console.log(songs);
+  };
+  myfunc();
 
   // Attach an event listener to each song
   Array.from(
     document.querySelector(".cardContainer").getElementsByTagName("div")
   ).forEach((e) => {
-    // console.log("tttt");
     e.addEventListener("click", () => {
-      console.log(e.getElementsByTagName("div")[0].innerText);
       playMusic(
         "https://raw.githubusercontent.com/MohdShadab9887/apna-spotify/main/song/" +
           e.getElementsByTagName("div")[0].innerHTML
       );
-      // console.log(e.getElementsByTagName("div")[0].innerHTML)
-
-      // div = document.querySelector(".songName").innerHTML = `<div> ${
-      //   e.getElementsByTagName("div")[1].innerHTML
-      // } </div>`;
       currentSongName();
     });
   });
